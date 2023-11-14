@@ -85,6 +85,13 @@ public class JXBanner: JXBaseBanner, JXBannerType {
         // Start Animation
         start()
     }
+    public func resetCurrentIndexPath(_ indexPath: IndexPath) {
+        if indexPath.row < pageCount {
+            currentIndexPath = indexPath
+        } else {
+            currentIndexPath = IndexPath(row: 0, section: 0)
+        }
+    }
 }
 
 // MARK: - Private mothod
