@@ -171,7 +171,7 @@ extension JXBaseBanner {
     
     func scrollToIndexPath(
         _ indexPath: IndexPath, animated: Bool) {
-        
+        guard let _ =  collectionView.cellForItem(at: indexPath) else { return }
         // Handle indexpath bounds
         if params.cycleWay == .forward,
             pageCount > 1 {
@@ -197,6 +197,11 @@ extension JXBaseBanner {
             if layout.params?.scrollDirection == .vertical {
                 scrollPosition = .centeredVertically
             }
+            guard let _ =  collectionView.cellForItem(at: indexPath) else {
+                print(" fix crash1 will scroll to :\(indexPath), , all cells:\(collectionView.visibleCells) cellforitem:\(collectionView.cellForItem(at: indexPath)),")
+                return
+            }
+
             collectionView.scrollToItem(at: indexPath,
                                         at: scrollPosition,
                                         animated: animated)
